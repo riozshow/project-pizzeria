@@ -60,7 +60,20 @@
       this.data = data;
 
       this.renderInMenu();
+
+      this.accordionTrigger = this.element.querySelector(
+        select.menuProduct.clickable
+      );
+      this.form = this.element.querySelector(select.menuProduct.form);
+      this.formInputs = this.form.querySelectorAll(select.all.formInputs);
+      this.cartButton = this.element.querySelector(
+        select.menuProduct.cartButton
+      );
+      this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
+
       this.initAccordion();
+      this.initOrderForm();
+      this.processOrder();
     }
 
     renderInMenu() {
@@ -72,8 +85,7 @@
 
     initAccordion() {
       const activeClass = classNames.menuProduct.wrapperActive;
-      const clickableTrigger = this.element.querySelector("header");
-      clickableTrigger.addEventListener("click", () => {
+      this.accordionTrigger.addEventListener("click", () => {
         if (this.element.classList.contains(activeClass)) {
           return this.element.classList.remove(activeClass);
         } else {
@@ -83,6 +95,47 @@
           this.element.classList.add(activeClass);
         }
       });
+    }
+
+    initOrderForm() {
+      this.form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this.processOrder();
+      });
+
+      for (let input of this.formInputs) {
+        input.addEventListener("change", () => {
+          this.processOrder();
+        });
+      }
+
+      this.cartButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.processOrder();
+      });
+    }
+
+    processOrder() {
+      let price = this.data.price;
+      const formData = utils.serializeFormToObject(this.form);
+
+      for (const paramId in this.data.params) {
+        const param = this.data.params[paramId];
+        for (let optionId in param.options) {
+          const option = param.options[optionId];
+          if (formData[paramId].includes(optionId)) {
+            if (!option.default) {
+              price += option.price;
+            }
+          } else {
+            if (option.default) {
+              price -= option.price;
+            }
+          }
+        }
+      }
+
+      this.priceElem.innerHTML = price;
     }
   }
 
