@@ -63,6 +63,7 @@
       this.getElements();
       this.initAccordion();
       this.initOrderForm();
+      this.initAmountWidget();
       this.processOrder();
     }
 
@@ -85,6 +86,9 @@
       this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
       this.imageWrapper = this.element.querySelector(
         select.menuProduct.imageWrapper
+      );
+      this.amountWidgetElem = this.element.querySelector(
+        select.menuProduct.amountWidget
       );
     }
 
@@ -116,6 +120,13 @@
 
       this.cartButton.addEventListener("click", (e) => {
         e.preventDefault();
+        this.processOrder();
+      });
+    }
+
+    initAmountWidget() {
+      this.amountWidget = new AmountWidget(this.amountWidgetElem);
+      this.amountWidgetElem.addEventListener("updated", () => {
         this.processOrder();
       });
     }
@@ -156,7 +167,56 @@
         }
       }
 
-      this.priceElem.innerHTML = price;
+      this.priceElem.innerHTML = price * this.amountWidget.value;
+    }
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      this.getElements(element);
+      this.setValue(this.input.value);
+      this.initActions();
+    }
+
+    getElements(element) {
+      this.element = element;
+      this.input = this.element.querySelector(select.widgets.amount.input);
+      this.linkDecrease = this.element.querySelector(
+        select.widgets.amount.linkDecrease
+      );
+      this.linkIncrease = this.element.querySelector(
+        select.widgets.amount.linkIncrease
+      );
+    }
+
+    setValue(value) {
+      const newValue = parseInt(value);
+      if (
+        !isNaN(newValue) &&
+        newValue >= settings.amountWidget.defaultMin &&
+        newValue <= settings.amountWidget.defaultMax
+      ) {
+        this.value = newValue;
+        this.announce();
+      }
+      this.input.value = this.value;
+    }
+
+    initActions() {
+      this.input.addEventListener("change", (e) => {
+        this.setValue(e.target.value);
+      });
+      this.linkDecrease.addEventListener("click", () => {
+        this.setValue(this.value - 1);
+      });
+      this.linkIncrease.addEventListener("click", () => {
+        this.setValue(this.value + 1);
+      });
+    }
+
+    announce() {
+      const event = new Event("updated");
+      this.element.dispatchEvent(event);
     }
   }
 
