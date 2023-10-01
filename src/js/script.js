@@ -60,17 +60,7 @@
       this.data = data;
 
       this.renderInMenu();
-
-      this.accordionTrigger = this.element.querySelector(
-        select.menuProduct.clickable
-      );
-      this.form = this.element.querySelector(select.menuProduct.form);
-      this.formInputs = this.form.querySelectorAll(select.all.formInputs);
-      this.cartButton = this.element.querySelector(
-        select.menuProduct.cartButton
-      );
-      this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
-
+      this.getElements();
       this.initAccordion();
       this.initOrderForm();
       this.processOrder();
@@ -81,6 +71,21 @@
       this.element = utils.createDOMFromHTML(genreratedHTML);
       const menuContainer = document.querySelector(select.containerOf.menu);
       menuContainer.appendChild(this.element);
+    }
+
+    getElements() {
+      this.accordionTrigger = this.element.querySelector(
+        select.menuProduct.clickable
+      );
+      this.form = this.element.querySelector(select.menuProduct.form);
+      this.formInputs = this.form.querySelectorAll(select.all.formInputs);
+      this.cartButton = this.element.querySelector(
+        select.menuProduct.cartButton
+      );
+      this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
+      this.imageWrapper = this.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
     }
 
     initAccordion() {
@@ -118,6 +123,22 @@
     processOrder() {
       let price = this.data.price;
       const formData = utils.serializeFormToObject(this.form);
+
+      [...this.imageWrapper.children].map((image) => {
+        if (image.classList.length > 1) {
+          image.classList.remove(classNames.menuProduct.imageVisible);
+        }
+      });
+      for (const paramId in formData) {
+        formData[paramId].map((option) => {
+          const image = this.imageWrapper.querySelector(
+            `.${paramId}-${option}`
+          );
+          if (image) {
+            image.classList.add(classNames.menuProduct.imageVisible);
+          }
+        });
+      }
 
       for (const paramId in this.data.params) {
         const param = this.data.params[paramId];
