@@ -37,8 +37,7 @@
       productList: ".cart__order-summary",
       toggleTrigger: ".cart__summary",
       totalNumber: `.cart__total-number`,
-      totalPrice:
-        ".cart__total-price strong, .cart__order-total .cart__order-price-sum strong",
+      totalPrice: ".cart__total-price strong, .cart__order-total .cart__order-price-sum strong",
       subtotalPrice: ".cart__order-subtotal .cart__order-price-sum strong",
       deliveryFee: ".cart__order-delivery .cart__order-price-sum strong",
       form: ".cart__order",
@@ -86,13 +85,9 @@
   };
 
   const templates = {
-    menuProduct: Handlebars.compile(
-      document.querySelector(select.templateOf.menuProduct).innerHTML
-    ),
+    menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
     // CODE ADDED START
-    cartProduct: Handlebars.compile(
-      document.querySelector(select.templateOf.cartProduct).innerHTML
-    ),
+    cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
     // CODE ADDED END
   };
 
@@ -118,25 +113,13 @@
     }
 
     getElements() {
-      this.dom.accordionTrigger = this.dom.wrapper.querySelector(
-        select.menuProduct.clickable
-      );
+      this.dom.accordionTrigger = this.dom.wrapper.querySelector(select.menuProduct.clickable);
       this.dom.form = this.dom.wrapper.querySelector(select.menuProduct.form);
-      this.dom.formInputs = this.dom.form.querySelectorAll(
-        select.all.formInputs
-      );
-      this.dom.cartButton = this.dom.wrapper.querySelector(
-        select.menuProduct.cartButton
-      );
-      this.dom.price = this.dom.wrapper.querySelector(
-        select.menuProduct.priceElem
-      );
-      this.dom.imageWrapper = this.dom.wrapper.querySelector(
-        select.menuProduct.imageWrapper
-      );
-      this.dom.amountWidget = this.dom.wrapper.querySelector(
-        select.menuProduct.amountWidget
-      );
+      this.dom.formInputs = this.dom.form.querySelectorAll(select.all.formInputs);
+      this.dom.cartButton = this.dom.wrapper.querySelector(select.menuProduct.cartButton);
+      this.dom.price = this.dom.wrapper.querySelector(select.menuProduct.priceElem);
+      this.dom.imageWrapper = this.dom.wrapper.querySelector(select.menuProduct.imageWrapper);
+      this.dom.amountWidget = this.dom.wrapper.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordion() {
@@ -145,9 +128,7 @@
         if (this.dom.wrapper.classList.contains(activeClass)) {
           return this.dom.wrapper.classList.remove(activeClass);
         } else {
-          [...document.querySelectorAll(".product")].map((product) =>
-            product.classList.remove(activeClass)
-          );
+          [...document.querySelectorAll(".product")].map((product) => product.classList.remove(activeClass));
           this.dom.wrapper.classList.add(activeClass);
         }
       });
@@ -220,7 +201,7 @@
 
       this.priceSingle = price;
       this.price = price * this.amountWidget.value;
-      this.dom.price.innerHTML = price;
+      this.dom.price.innerHTML = this.price;
     }
 
     addToCart() {
@@ -250,12 +231,8 @@
     getElements(element) {
       this.element = element;
       this.input = this.element.querySelector(select.widgets.amount.input);
-      this.linkDecrease = this.element.querySelector(
-        select.widgets.amount.linkDecrease
-      );
-      this.linkIncrease = this.element.querySelector(
-        select.widgets.amount.linkIncrease
-      );
+      this.linkDecrease = this.element.querySelector(select.widgets.amount.linkDecrease);
+      this.linkIncrease = this.element.querySelector(select.widgets.amount.linkIncrease);
     }
 
     setValue(value) {
@@ -300,24 +277,12 @@
     getElements(element) {
       this.dom = {};
       this.dom.wrapper = element;
-      this.dom.toggleTrigger = this.dom.wrapper.querySelector(
-        select.cart.toggleTrigger
-      );
-      this.dom.productList = this.dom.wrapper.querySelector(
-        select.cart.productList
-      );
-      this.dom.deliveryFee = this.dom.wrapper.querySelector(
-        select.cart.deliveryFee
-      );
-      this.dom.subtotalPrice = this.dom.wrapper.querySelector(
-        select.cart.subtotalPrice
-      );
-      this.dom.totalPrice = this.dom.wrapper.querySelectorAll(
-        select.cart.totalPrice
-      );
-      this.dom.totalNumber = this.dom.wrapper.querySelector(
-        select.cart.totalNumber
-      );
+      this.dom.toggleTrigger = this.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      this.dom.productList = this.dom.wrapper.querySelector(select.cart.productList);
+      this.dom.deliveryFee = this.dom.wrapper.querySelector(select.cart.deliveryFee);
+      this.dom.subtotalPrice = this.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      this.dom.totalPrice = this.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      this.dom.totalNumber = this.dom.wrapper.querySelector(select.cart.totalNumber);
       this.dom.form = this.dom.wrapper.querySelector(select.cart.form);
       this.dom.phone = this.dom.wrapper.querySelector(select.cart.phone);
       this.dom.address = this.dom.wrapper.querySelector(select.cart.address);
@@ -332,9 +297,7 @@
       });
       this.dom.productList.addEventListener("remove", (e) => {
         console.log(e);
-        this.products = this.products.filter(
-          (product) => product !== e.detail.cartProduct
-        );
+        this.products = this.products.filter((product) => product !== e.detail.cartProduct);
         this.update();
       });
       this.dom.form.addEventListener("submit", (e) => {
@@ -377,9 +340,7 @@
       }
 
       this.dom.totalNumber.innerHTML = totalNumber;
-      [...this.dom.totalPrice].map(
-        (elem) => (elem.innerHTML = this.totalPrice)
-      );
+      [...this.dom.totalPrice].map((elem) => (elem.innerHTML = this.totalPrice));
       this.dom.subtotalPrice.innerHTML = subtotalPrice;
 
       const details = {
@@ -416,9 +377,7 @@
     getElements(element) {
       this.dom = { wrapper: element };
       const elements = {
-        amountWidget: this.dom.wrapper.querySelector(
-          select.cartProduct.amountWidget
-        ),
+        amountWidget: this.dom.wrapper.querySelector(select.cartProduct.amountWidget),
         price: this.dom.wrapper.querySelector(select.cartProduct.price),
         edit: this.dom.wrapper.querySelector(select.cartProduct.edit),
         remove: this.dom.wrapper.querySelector(select.cartProduct.remove),
