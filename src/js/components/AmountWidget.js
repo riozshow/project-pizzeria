@@ -1,48 +1,41 @@
 import { settings, select } from "../settings.js";
+import BaseWidget from "./BaseWidget.js";
 
-class AmountWidget {
+class AmountWidget extends BaseWidget{
   constructor(element) {
-    this.getElements(element);
-    this.setValue(settings.amountWidget.defaultValue);
+    super(element, settings.amountWidget.defaultValue);
+    this.getElements();
     this.initActions();
+    this.renderValue();
   }
 
-  getElements(element) {
-    this.element = element;
-    this.input = this.element.querySelector(select.widgets.amount.input);
-    this.linkDecrease = this.element.querySelector(select.widgets.amount.linkDecrease);
-    this.linkIncrease = this.element.querySelector(select.widgets.amount.linkIncrease);
+  getElements() {
+    this.dom.input = this.dom.wrapper.querySelector(select.widgets.amount.input);
+    this.dom.linkDecrease = this.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+    this.dom.linkIncrease = this.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
 
-  setValue(value) {
-    const newValue = parseInt(value);
-    if (
-      !isNaN(newValue) &&
-      newValue >= settings.amountWidget.defaultMin &&
-      newValue <= settings.amountWidget.defaultMax
-    ) {
-      this.value = newValue;
-      this.announce();
-    }
-    this.input.value = this.value;
+  renderValue() {
+    this.dom.input.value = this.value;
   }
+
+  isValid(newValue) {
+    return (!isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax)
+}
 
   initActions() {
-    this.input.addEventListener("change", (e) => {
+    this.dom.input.addEventListener("change", (e) => {
       this.setValue(e.target.value);
     });
-    this.linkDecrease.addEventListener("click", () => {
+    this.dom.linkDecrease.addEventListener("click", () => {
       this.setValue(this.value - 1);
     });
-    this.linkIncrease.addEventListener("click", () => {
+    this.dom.linkIncrease.addEventListener("click", () => {
       this.setValue(this.value + 1);
     });
   }
 
-  announce() {
-    const event = new CustomEvent("updated", { bubbles: true });
-    this.element.dispatchEvent(event);
-  }
+  
 }
 
 export default AmountWidget;
