@@ -33,7 +33,10 @@ utils.serializeFormToObject = function (form) {
               output[field.name].push(option.value);
             }
           }
-        } else if ((field.type != "checkbox" && field.type != "radio") || field.checked) {
+        } else if (
+          (field.type != "checkbox" && field.type != "radio") ||
+          field.checked
+        ) {
           utils.createPropIfUndefined(output, field.name);
           output[field.name].push(field.value);
         } else if (!output[field.name]) output[field.name] = [];
@@ -58,7 +61,9 @@ utils.queryParams = function (params) {
     .join("&");
 };
 utils.numberToHour = function (number) {
-  return (Math.floor(number) % 24) + ":" + ((number % 1) * 60 + "").padStart(2, "0");
+  return (
+    (Math.floor(number) % 24) + ":" + ((number % 1) * 60 + "").padStart(2, "0")
+  );
 };
 
 utils.hourToNumber = function (hour) {
@@ -75,6 +80,11 @@ utils.addDays = function (dateStr, days) {
   const dateObj = new Date(dateStr);
   dateObj.setDate(dateObj.getDate() + days);
   return dateObj;
+};
+
+utils.fetchJSON = async function (url) {
+  const response = await fetch(url);
+  return await response.json();
 };
 
 Handlebars.registerHelper("ifEquals", function (arg1, arg2, options) {
