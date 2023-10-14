@@ -1,7 +1,7 @@
 import { settings, select } from "../settings.js";
 import BaseWidget from "./BaseWidget.js";
 
-class AmountWidget extends BaseWidget{
+class AmountWidget extends BaseWidget {
   constructor(element) {
     super(element, settings.amountWidget.defaultValue);
     this.getElements();
@@ -20,8 +20,10 @@ class AmountWidget extends BaseWidget{
   }
 
   isValid(newValue) {
-    return (!isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax)
-}
+    return (
+      !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax
+    );
+  }
 
   initActions() {
     this.dom.input.addEventListener("change", (e) => {
@@ -34,8 +36,6 @@ class AmountWidget extends BaseWidget{
       this.setValue(this.value + 1);
     });
   }
-
-  
 }
 
 export default AmountWidget;
