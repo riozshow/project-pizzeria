@@ -6,7 +6,7 @@ import Booking from "./components/Booking.js";
 const app = {
   initPages: function () {
     this.pages = [...document.querySelector(select.containerOf.pages).children];
-    this.navLinks = [...document.querySelectorAll(select.nav.links)];
+    this.navLinks = [...document.querySelectorAll(select.nav.links), ...document.querySelectorAll(select.nav.tabs)];
 
     const idFromHash = window.location.hash.replace("#/", "");
     const defaultPage = this.pages.find((page) => page.id === idFromHash);

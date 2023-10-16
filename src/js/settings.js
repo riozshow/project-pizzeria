@@ -66,6 +66,7 @@ export const select = {
   },
   nav: {
     links: ".main-nav a",
+    tabs: ".front-tab",
   },
 };
 

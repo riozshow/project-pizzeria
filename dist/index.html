@@ -9,9 +9,11 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
     rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -24,6 +26,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
@@ -65,6 +68,146 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="container">
+        <div class="home-wrapper">
+
+          <div class="my-1 d-flex gap-1 tabs">
+            <a href="#order" class="front-tab image-tab w-100">
+              <img src="./images/home/assets/pizza-1.jpg" alt="pizza-1" class="position-absolute w-100">
+              <h4>ORDER ONLINE</h4>
+              <p>Delicious food delivered to your door</p>
+            </a>
+            <a href="#booking" class="front-tab image-tab w-100">
+              <img src="./images/home/assets/pizza-2.jpg" alt="pizza-2" class="position-absolute w-100">
+              <h4>BOOK A TABLE</h4>
+              <p>Select the table and visit us</p>
+            </a>
+          </div>
+
+          <div class="w-100 opening-hours front-tab mb-5">
+            <h4>OPENING HOURS:</h4>
+            <p>TUE-SUN, 12PM-12AM</p>
+          </div>
+
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="carousel-comment">
+                  <img src="./images/home/assets/pizza-3.jpg" class="d-block w-100" alt="...">
+                  <div>
+                    <h5>
+                      AMAZING SERVICE!
+                    </h5>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia corrupti laboriosam dolores
+                      veritatis voluptates dolorum sunt non, modi nesciunt tempora dolore minus aperiam,
+                      exercitationem
+                      quis.
+                    </p>
+                    <p>- Margaret Osbourne</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="carousel-comment">
+                  <img src="./images/home/assets/pizza-3.jpg" class="d-block w-100" alt="...">
+                  <div>
+                    <h5>
+                      AMAZING SERVICE!
+                    </h5>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia corrupti laboriosam dolores
+                      veritatis voluptates dolorum sunt non, modi nesciunt tempora dolore minus aperiam,
+                      exercitationem
+                      quis.
+                    </p>
+                    <p>- Margaret Osbourne</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="carousel-comment">
+                  <img src="./images/home/assets/pizza-3.jpg" class="d-block w-100" alt="...">
+                  <div>
+                    <h5>
+                      AMAZING SERVICE!
+                    </h5>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia corrupti laboriosam dolores
+                      veritatis voluptates dolorum sunt non, modi nesciunt tempora dolore minus aperiam,
+                      exercitationem
+                      quis.
+                    </p>
+                    <p>- Margaret Osbourne</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+          <div class="gallery d-flex flex-column gap-2 my-5">
+            <div class="d-flex w-100 gap-2">
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-4.jpg" alt="pizza-4">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-5.jpg" alt="pizza-5">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-6.jpg" alt="pizza-6">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex w-100 gap-2">
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-7.jpg" alt="pizza-7">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-8.jpg" alt="pizza-8">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+              <div class="image-wrapper">
+                <img src="./images/home/assets/pizza-9.jpg" alt="pizza-9">
+                <div class="d-flex gap-3 position-absolute z-5 buttons">
+                  <i class="fas fa-share-alt"></i>
+                  <i class="fas fa-heart"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <a href="">View more on Instagram</a>
+        </div>
+
+
+      </div>
+
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -246,6 +389,9 @@
     </div>
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
   <script src="./vendor/range-slider.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>

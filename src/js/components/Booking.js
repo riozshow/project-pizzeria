@@ -102,7 +102,6 @@ class Booking {
   updateBooking(details = this.getBookingDefaults()) {
     this.bookingDetails = { ...this.bookingDetails, ...details };
     this.updateDOM();
-    console.log(this.bookingDetails);
   }
 
   getBookingDefaults() {
@@ -189,7 +188,6 @@ class Booking {
       }).then(() => {
         this.makeBooked(this.bookingDetails);
         this.updateBooking();
-        this.updateDOM();
       });
     });
   }
